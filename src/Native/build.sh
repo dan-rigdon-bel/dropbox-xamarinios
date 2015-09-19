@@ -64,14 +64,6 @@ cd $PROJDIR/build/Release-iphoneos
 mv libSDropboxSDK.a libDropboxSDK-armv7.a
 mv libDropboxSDK-armv7.a ../Release-ios
 cd ../../../..
-	
-printf " Compiling armv7s version              "
-xcodebuild -project $PROJDIR/$PROJ -target $TARGET -sdk iphoneos -arch armv7s -configuration Release clean build > /dev/null
-printf "...Done\n";
-cd $PROJDIR/build/Release-iphoneos
-mv libSDropboxSDK.a libDropboxSDK-armv7s.a
-mv libDropboxSDK-armv7s.a ../Release-ios
-cd ../../../..
 
 printf " Compiling arm64 version               "
 xcodebuild -project $PROJDIR/$PROJ -target $TARGET -sdk iphoneos -arch arm64 -configuration Release clean build > /dev/null
@@ -82,7 +74,7 @@ mv libDropboxSDK-arm64.a ../Release-ios
 	
 printf " Creating Universal Binary             "
 cd ../Release-ios
-lipo -create -output libDropboxSDK.a libDropboxSDK-i386.a libDropboxSDK-armv7.a libDropboxSDK-armv7s.a libDropboxSDK-arm64.a
+lipo -create -output libDropboxSDK.a libDropboxSDK-i386.a libDropboxSDK-armv7.a libDropboxSDK-arm64.a
 printf "...Done\n";
 
 printf " Copying to binding project            "

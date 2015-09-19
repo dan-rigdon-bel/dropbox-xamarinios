@@ -101,7 +101,7 @@ namespace DropboxSDK
 		private class DBLoadFileRestClientDelegate : DBRestClientDelegate
 		{
 			public Action<string, string, DBMetadata> OnFileMetadataLoaded { get; set; }
-			public Action<float, string> OnLoadProgress { get; set; }
+			public Action<nfloat, string> OnLoadProgress { get; set; }
 			public Action<NSError> OnLoadFileFailed { get; set; }
 
 			public override void FileMetadataLoaded (DBRestClient client, string destPath, string contentType, DBMetadata metadata)
@@ -116,14 +116,14 @@ namespace DropboxSDK
 					OnLoadFileFailed (error);
 			}
 
-			public override void LoadProgress (DBRestClient client, float progress, string destPath)
+			public override void LoadProgress (DBRestClient client, nfloat progress, string destPath)
 			{
 				if (OnLoadProgress != null)
 					OnLoadProgress (progress, destPath);
 			}
 		}
 
-		public Action<float, string> OnLoadProgress { get; set; }
+		public Action<nfloat, string> OnLoadProgress { get; set; }
 
 		public Task<DBMetadata> LoadFileTask (string path, string destPath, CancellationToken token = default (CancellationToken)) 
 		{

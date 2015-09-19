@@ -416,7 +416,7 @@ namespace DropboxSDK
 		void FileMetadataLoaded (DBRestClient client, string destPath, string contentType, DBMetadata metadata);
 
 		[Export ("restClient:loadProgress:forFile:"), EventArgs ("Progress")]
-		void LoadProgress (DBRestClient client, float progress, string destPath);
+		void LoadProgress (DBRestClient client, nfloat progress, string destPath);
 
 		[Export ("restClient:loadFileFailedWithError:"), EventArgs ("NSError")]
 		void LoadFileFailed (DBRestClient client, NSError error);
