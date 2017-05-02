@@ -122,7 +122,7 @@ namespace DropboxSDK
 		void SetCredentials (NSDictionary credentials);
 
 		[Static]
-		[Export ("credentials:")]
+		[Export ("credentials")]
 		NSDictionary Credentials ();
 
 		[Static]

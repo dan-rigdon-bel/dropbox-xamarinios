@@ -48,21 +48,21 @@ echo ""
 echo "iOS Build-------------------------------------------------------"
 echo "Making static libDropboxSDK.a for iOS..."
 	
-printf " Compiling i386 version                "
+#printf " Compiling i386 version                "
 # add: > /dev/null  to suppress output on xcodeBuilds
-xcodebuild -project $PROJDIR/$PROJ -target $TARGET -sdk iphonesimulator -arch i386 -configuration Release clean build > /dev/null
+#xcodebuild -project $PROJDIR/$PROJ -target $TARGET -sdk iphonesimulator -arch i386 -configuration Release clean build > /dev/null
+#printf "...Done\n";
+#cd $PROJDIR/build/Release-iphonesimulator
+#mv libSDropboxSDK.a libDropboxSDK-i386.a
+#mv libDropboxSDK-i386.a ../Release-ios
+#cd ../../../..
+
+printf " Compiling x86_64 version              "
+xcodebuild -project $PROJDIR/$PROJ -target $TARGET -sdk iphonesimulator -arch x86_64 -configuration Release clean build > /dev/null
 printf "...Done\n";
 cd $PROJDIR/build/Release-iphonesimulator
-mv libSDropboxSDK.a libDropboxSDK-i386.a
-mv libDropboxSDK-i386.a ../Release-ios
-cd ../../../..
-
-printf " Compiling armv7 version               "
-xcodebuild -project $PROJDIR/$PROJ -target $TARGET -sdk iphoneos -arch armv7 -configuration Release clean build > /dev/null
-printf "...Done\n";
-cd $PROJDIR/build/Release-iphoneos
-mv libSDropboxSDK.a libDropboxSDK-armv7.a
-mv libDropboxSDK-armv7.a ../Release-ios
+mv libSDropboxSDK.a libDropboxSDK-x86_64.a
+mv libDropboxSDK-x86_64.a ../Release-ios
 cd ../../../..
 
 printf " Compiling arm64 version               "
@@ -74,7 +74,7 @@ mv libDropboxSDK-arm64.a ../Release-ios
 	
 printf " Creating Universal Binary             "
 cd ../Release-ios
-lipo -create -output libDropboxSDK.a libDropboxSDK-i386.a libDropboxSDK-armv7.a libDropboxSDK-arm64.a
+lipo -create -output libDropboxSDK.a libDropboxSDK-x86_64.a libDropboxSDK-arm64.a
 printf "...Done\n";
 
 printf " Copying to binding project            "
